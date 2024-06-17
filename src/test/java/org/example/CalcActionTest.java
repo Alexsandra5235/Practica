@@ -16,33 +16,33 @@ public class CalcActionTest {
     }
 
     @Test
-    public void summa() {
+    public void sum() {
         assertAll(
-                ()->assertEquals(8,calcAction.Summa(3,5),0),
-                ()->assertEquals(0,calcAction.Summa(-5,5),0)
+                ()->assertEquals(8,calcAction.sum(3,5),0),
+                ()->assertEquals(0,calcAction.sum(-5,5),0)
         );
 
     }
 
     @Test
-    public void munus() {
+    public void subtraction() {
         assertAll(
-                ()->assertEquals(-5,calcAction.Munus(0,5),0),
-                ()->assertEquals(-10,calcAction.Munus(-5,5),0)
+                ()->assertEquals(-5,calcAction.subtraction(0,5),0),
+                ()->assertEquals(-10,calcAction.subtraction(-5,5),0)
 
         );
     }
 
     @Test
-    public void ymnog() {
+    public void multiplication() {
         assertAll(
-                ()->assertEquals(0,calcAction.Ymnog(3,0),0),
-                ()->assertEquals(-5,calcAction.Ymnog(-1,5),0)
+                ()->assertEquals(0,calcAction.multiplication(3,0),0),
+                ()->assertEquals(-5,calcAction.multiplication(-1,5),0)
         );
     }
 
     @Test
-    public void delenie() {
+    public void division() {
         assertAll(
                 () -> assertTrue(Double.isInfinite(calcAction.SelectMethod(3,0,4))),
                 () -> assertEquals(3, calcAction.SelectMethod(6,2,4),0)

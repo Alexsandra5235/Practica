@@ -6,16 +6,16 @@ import MyException.RangeValuesException;
 import MyException.StringException;
 
 public class CalcAction {
-    public double Summa(double a,double b){
+    public double sum(double a, double b){
         return  a + b;
     }
-    public double Munus(double a, double b){
+    public double subtraction(double a, double b){
         return a-b;
     }
-    public double Ymnog(double a,double b){
+    public double multiplication(double a, double b){
         return a*b;
     }
-    public double Delenie(double a,double b){
+    public double division(double a, double b){
         return a/b;
 
     }
@@ -69,10 +69,10 @@ public class CalcAction {
 
     public double SelectMethod(double a, double b, int key){
         return switch (key) {
-            case 1 -> Summa(a, b);
-            case 2 -> Munus(a, b);
-            case 3 -> Ymnog(a, b);
-            case 4 -> Delenie(a, b);
+            case 1 -> sum(a, b);
+            case 2 -> subtraction(a, b);
+            case 3 -> multiplication(a, b);
+            case 4 -> division(a, b);
             case 5 -> Pow(a, b);
             default -> 0;
         };
