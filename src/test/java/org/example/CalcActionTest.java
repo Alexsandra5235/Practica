@@ -25,6 +25,7 @@ public class CalcActionTest {
 
     @Test
     public void ymnog() {
+        System.out.println(1);
     }
 
     @Test
