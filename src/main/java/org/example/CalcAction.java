@@ -40,15 +40,16 @@ public class CalcAction {
             }else if((isString(a) | isString(b) | isString(key))){
                 throw new StringException();
             }else{
-                result = CheckError(Double.parseDouble(a),Double.parseDouble(b),Integer.parseInt(key));
+                result = CheckError(Double.parseDouble(b),Integer.parseInt(key));
             }
         }catch (StringException | EmptyValuesException e){
             System.out.println(e.getMessage());
         }
         return result;
     }
-    public boolean CheckError(double a, double b, int key){
+    private boolean CheckError(double b, int key){
         boolean result = false;
+
         try{
             if (key > 5 | key < 1){ // диапазон ключа
                 throw new RangeValuesException();

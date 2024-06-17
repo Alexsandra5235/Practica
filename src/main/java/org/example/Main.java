@@ -3,7 +3,6 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         CalcAction calcAction = new CalcAction();
-
 //        Scanner scanner = new Scanner(System.in);
 //        String a = scanner.nextLine();
 //        String b = scanner.nextLine();

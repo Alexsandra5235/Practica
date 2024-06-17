@@ -29,6 +29,7 @@ public class CalcActionTest {
         assertAll(
                 ()->assertEquals(-5,calcAction.Munus(0,5),0),
                 ()->assertEquals(-10,calcAction.Munus(-5,5),0)
+
         );
     }
 
