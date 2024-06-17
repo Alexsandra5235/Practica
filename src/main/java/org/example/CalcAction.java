@@ -1,5 +1,10 @@
 package org.example;
 
+import MyException.EmptyValuesException;
+import MyException.NullException;
+import MyException.RangeValuesException;
+import MyException.StringException;
+
 public class CalcAction {
     public double Summa(double a,double b){
         return  a + b;
@@ -17,6 +22,7 @@ public class CalcAction {
     public double Pow(double a, double b){
         return Math.pow(a,b);
     }
+
     private static boolean isString(String value) {
         try {
             Double.parseDouble(value); // Пытаемся преобразовать строку в число
@@ -26,78 +32,48 @@ public class CalcAction {
         }
     }
 
-
-
-    public double Run(double a,double b, String key){
-
-//        try{
-//            System.out.println("Change action with number:\n" +
-//                    "1. Add\n" +
-//                    "2. Subtract\n" +
-//                    "3. Multiply\n" +
-//                    "4. Splitting\n" +
-//                    "5. Pow\n");
-//            if (key.isEmpty()){
-//                key ="0";
-//                throw new EmptyValuesException();
-//            }
-//            if(isString(key)){
-//                key ="0";
-//                throw new StringException();
-//            }
-//            if (Double.parseDouble(key)>5 || Double.parseDouble(key)<1){
-//                key ="0";
-//                throw new RangeValuesException();
-//            }
-//
-//        }
-//        catch (StringException e){
-//            System.out.println("Error:\n" + e.getMessage());
-//        }
-//        catch (RangeValuesException e){
-//            System.out.println("Error:\n" + e.getMessage());
-//        }
-//        catch (EmptyValuesException e){
-//            System.out.println("Error:\n" + e.getMessage());
-//        }
-//
-//        try{
-//            System.out.println("Enter the numbers to calculate");
-//            a = scanner.nextLine();
-//            b = scanner.nextLine();
-//            if(isString(a) || isString(b)){
-//
-//                throw new StringException();
-//            }
-//            if (Double.parseDouble(b)==0){
-//                throw new NullException();
-//            }
-//        }
-//        catch (StringException | NullException e){
-//            System.out.println("Error:\n" + e.getMessage());
-//            throw new RuntimeException(e);
-//        }
-//
-
-
-        double result = 0;
-        switch (key){
-            case "1":
-                System.out.println(Summa(a,b));
-                break;
-            case "2":
-                System.out.println(Munus(a,b));
-                break;
-            case "3":
-                System.out.println(Ymnog(a,b));
-                break;
-            case "4":
-                result = Delenie(a,b);
-                break;
-            case "5":
-                System.out.println(Pow(a,b));
-                break;
+    public boolean CheckErrorRun(String a, String b, String key){
+        boolean result = false;
+        try{
+            if (a.isEmpty()|b.isEmpty()|key.isEmpty()){
+                throw new EmptyValuesException();
+            }else if((isString(a) | isString(b) | isString(key))){
+                throw new StringException();
+            }else{
+                result = CheckError(Double.parseDouble(a),Double.parseDouble(b),Integer.parseInt(key));
+            }
+        }catch (StringException | EmptyValuesException e){
+            System.out.println(e.getMessage());
         }
         return result;
+    }
+    public boolean CheckError(double a, double b, int key){
+        boolean result = false;
+        try{
+            if (key > 5 | key < 1){ // диапазон ключа
+                throw new RangeValuesException();
+            } else if(key==4 & b==0){ // деление на ноль
+                throw new NullException();
+            }else {
+                result = true;
+            }
+        }catch (NullException | RangeValuesException e){
+            System.out.println(e.getMessage());
+        }
+        return result;
+    }
+
+
+
+
+    public double SelectMethod(double a, double b, int key){
+        return switch (key) {
+            case 1 -> Summa(a, b);
+            case 2 -> Munus(a, b);
+            case 3 -> Ymnog(a, b);
+            case 4 -> Delenie(a, b);
+            case 5 -> Pow(a, b);
+            default -> 0;
+        };
     }
 }
